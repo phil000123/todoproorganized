@@ -1,0 +1,1316 @@
+.date {
+    text-align: center;
+    font-size: 1.1em;
+    color: var(--secondary-text-color);
+    margin: 5px 0 15px 0;
+    padding: 8px 15px;
+    background: linear-gradient(145deg, rgba(37, 117, 252, 0.1), rgba(106, 17, 203, 0.1));
+    border-radius: 25px;
+    display: inline-block;
+    width: auto;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Title Styles */
+.container h1 {
+    text-align: center;
+    font-size: 2.2em;
+    margin: 10px 0 20px 0;
+    background: linear-gradient(145deg, #2575fc, #6a11cb);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.container h1::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(145deg, #2575fc, #6a11cb);
+    border-radius: 2px;
+    transform: scaleX(0.7);
+    transition: transform 0.3s ease;
+}
+
+.container h1:hover::after {
+    transform: scaleX(1);
+}
+
+/* Dark theme adjustments */
+[data-theme="dark"] .date {
+    background: linear-gradient(145deg, rgba(37, 117, 252, 0.15), rgba(106, 17, 203, 0.15));
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+:root {
+    --bg-color: #f4f4f9;
+    --text-color: #333;
+    --secondary-text-color: #666;
+    --card-bg-color: white;
+    --border-color: #ddd;
+    --todo-bg-color: #f9f9f9;
+}
+
+[data-theme="dark"] {
+    --bg-color: #181818;
+    --text-color: #f4f4f9;
+    --secondary-text-color: #aaa;
+    --card-bg-color: #242424;
+    --border-color: #333;
+    --todo-bg-color: #1e1e1e;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color .3s, color .3s;
+}
+
+body[data-theme="light"] {
+    background-image: url('https://source.unsplash.com/1600x900/?nature,cheerful');
+    background-size: cover;
+    background-position: center;
+}
+
+.container {
+    background: var(--card-bg-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .1);
+    width: 100%;
+    max-width: 400px;
+    transition: background-color .3s, color .3s;
+}
+
+.container h1 {
+    text-align: center;
+}
+
+/* Navigation Styles */
+.navigation {
+    display: flex;
+    justify-content: center;  /* Center the content horizontally */
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+/* Button Styles */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background: linear-gradient(145deg, #6a11cb, #2575fc);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Button Styles */
+.theme-toggle, #diary-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background: linear-gradient(145deg, #6a11cb, #2575fc);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle:hover, #diary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.theme-toggle i, #diary-btn i {
+    font-size: 20px;
+}
+
+#diary-btn.active {
+    background: linear-gradient(145deg, #2575fc, #6a11cb);
+}
+
+[data-theme="dark"] .theme-toggle i {
+    transform: rotate(180deg);
+}
+
+@keyframes swing {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+}
+
+.theme-toggle:hover i, #diary-btn:hover i {
+    animation: swing 1s ease infinite;
+}
+
+/* Todo Input and Buttons */
+.todo-input {
+    width: calc(100% - 22px);
+    padding: 12px;
+    margin: 5px auto;
+    display: block;
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    font-size: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.todo-input:focus {
+    outline: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+}
+
+.add-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(145deg, #2575fc, #6a11cb);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin: 10px 0;
+}
+
+.add-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(145deg, #2575fc, #6a11cb);
+}
+
+.add-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}   
+
+.add-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-btn:hover {
+    background-color: #218838;
+}
+
+/* Todo List Container */
+.todo-list-container {
+    max-height: 240px; /* Height for approximately 3 tasks */
+    overflow-y: auto;
+    margin-top: 15px;
+    padding-right: 5px; /* Space for scrollbar */
+    padding-left: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Scrollbar styling */
+.todo-list-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.todo-list-container::-webkit-scrollbar-track {
+    background: var(--todo-bg-color);
+    border-radius: 10px;
+}
+
+.todo-list-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(145deg, #2575fc, #6a11cb);
+    border-radius: 10px;
+    border: 2px solid var(--todo-bg-color);
+}
+
+.todo-list-container::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(145deg, #6a11cb, #2575fc);
+}
+
+/* Todo Items */
+.todo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.todo-item {
+    height: 40px; /* Reduced from 60px */
+    min-height: 40px; /* Reduced from 60px */
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Reduced from 12px */
+    padding: 8px 12px; /* Reduced from 12px 15px */
+    background: linear-gradient(145deg, var(--card-bg-color), var(--todo-bg-color));
+    border-radius: 8px; /* Reduced from 12px */
+    margin-bottom: 8px; /* Reduced from 10px */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+
+/* Checkbox styling */
+.todo-item input[type="checkbox"] {
+    width: 16px; /* Reduced from 20px */
+    height: 16px; /* Reduced from 20px */
+    margin-right: 8px; /* Reduced from 10px */
+    cursor: pointer;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+/* Completed task styling */
+.todo-item.completed span {
+    text-decoration: line-through;
+    color: var(--secondary-text-color);
+    opacity: 0.7;
+}
+
+.todo-item.completed {
+    background: linear-gradient(145deg, var(--todo-bg-color), var(--card-bg-color));
+    opacity: 0.8;
+    cursor: not-allowed;
+    transition: all 0.3s ease;
+}
+
+.todo-item.completed:hover {
+    transform: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Checkbox custom appearance */
+.todo-item input[type="checkbox"]:checked {
+    background-color: #2575fc;
+    border-color: #2575fc;
+    position: relative;
+}
+
+.todo-item input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    color: white;
+    font-size: 12px; /* Reduced from 14px */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Adjust delete button size */
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 8px; /* Reduced padding */
+    cursor: pointer;
+    margin-left: auto;
+    font-size: 14px; /* Reduced font size */
+    height: 24px; /* Added fixed height */
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* Add fade effect at the bottom when scrollable */
+.todo-list-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background: linear-gradient(to top, var(--card-bg-color), transparent);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.todo-list-container.scrollable::after {
+    opacity: 1;
+}
+
+
+/* Dragging styles */
+.todo-item.completed.dragging,
+.todo-item.completed.drop-target {
+    opacity: 0.8;
+    background: linear-gradient(145deg, var(--todo-bg-color), var(--card-bg-color));
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transform: none;
+}
+
+/* Drop placeholder */
+.todo-item.drop-target {
+    border: 2px dashed #2575fc;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    animation: pulse 1.5s infinite;
+}
+
+/* Ghost effect when dragging */
+.todo-item.drag-ghost {
+    opacity: 0.5;
+    background: linear-gradient(145deg, #e0e0e0, #f5f5f5);
+    transform: scale(0.98);
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 117, 252, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(37, 117, 252, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 117, 252, 0);
+    }
+}
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* Diary Styles */
+.diary-container {
+    display: none;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.diary-entry {
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    background-color: var(--todo-bg-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.diary-entry textarea {
+    width: calc(100% - 24px);
+    min-height: 150px;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+    font-size: 16px;
+    line-height: 1.5;
+    resize: vertical;
+    transition: all 0.3s ease;
+}
+
+.diary-entry textarea:focus {
+    outline: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+}
+
+.entry-message {
+    text-align: center;
+    color: var(--secondary-text-color);
+    font-style: italic;
+    margin: 15px 0;
+    padding: 10px;
+    background: linear-gradient(145deg, rgba(37, 117, 252, 0.1), rgba(106, 17, 203, 0.1));
+    border-radius: 25px;
+}
+
+/* Edit mode styles */
+.edit-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 0 4px;
+}
+
+.edit-task-input {
+    flex-grow: 1;
+    padding: 8px;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.edit-task-input:focus {
+    outline: none;
+    border-color: #2575fc;
+    box-shadow: 0 0 0 2px rgba(37, 117, 252, 0.2);
+}
+
+.task-actions {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.edit-task-btn {
+    background: none;
+    border: none;
+    color: #6a11cb;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.edit-task-btn:hover:not(:disabled) {
+    background-color: rgba(106, 17, 203, 0.1);
+}
+
+.edit-task-btn:disabled {
+    color: var(--secondary-text-color);
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.save-edit-btn,
+.cancel-edit-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.save-edit-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.save-edit-btn:hover {
+    background-color: #218838;
+}
+
+.cancel-edit-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.cancel-edit-btn:hover {
+    background-color: #c82333;
+}
+
+/* Adjust task item layout */
+.todo-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+}
+
+.task-text {
+    flex-grow: 1;
+    margin: 0 8px;
+}
+
+/* Animation for edit mode transition */
+.edit-container {
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.back-btn {
+    background: linear-gradient(145deg, #2575fc, #6a11cb);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    width: 100%;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.back-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.back-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Add save button styles */
+.add-btn.diary-save {
+    background: linear-gradient(145deg, #28a745, #20c997);
+    margin-top: 10px;
+}
+
+.add-btn.diary-save:hover {
+    background: linear-gradient(145deg, #20c997, #28a745);
+}
+
+/* Date Display */
+.date {
+    text-align: center;
+    font-size: 1.2em;
+    color: var(--secondary-text-color);
+    margin-bottom: 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 480px) {
+    .navigation {
+        flex-direction: row;  /* Keep it in row even on mobile */
+        gap: 10px;
+    }
+    
+    .theme-toggle {
+        width: auto;  /* Allow the button to size based on content */
+        justify-content: center;
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+}
+
+/* iOS-specific fixes and improvements */
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}
+
+/* Prevent iOS text size adjustment on orientation change */
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+    margin: 0;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color .3s, color .3s;
+    overscroll-behavior-y: none;
+}
+
+/* Fix for iOS momentum scrolling */
+.todo-list-container {
+    max-height: 240px;
+    overflow-y: auto;
+    margin-top: 15px;
+    padding-right: 5px;
+    padding-left: 2px;
+    transition: all 0.3s ease;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Improve input handling on iOS */
+input, textarea, button {
+    -webkit-appearance: none;
+    border-radius: 8px;
+    font-size: 16px; /* Prevent iOS zoom on focus */
+}
+
+.todo-input {
+    width: calc(100% - 22px);
+    padding: 12px;
+    margin: 5px auto;
+    display: block;
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    font-size: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Improve button touch targets for iOS */
+.theme-toggle, .add-btn, .delete-btn {
+    min-height: 44px; /* iOS recommended minimum touch target size */
+    padding: 12px 20px;
+}
+
+/* Fix iOS sticky hover states */
+@media (hover: hover) {
+    .theme-toggle:hover,
+    .add-btn:hover,
+    .delete-btn:hover {
+        opacity: 0.9;
+    }
+}
+
+/* Prevent pull-to-refresh on iOS */
+.container {
+    background: var(--card-bg-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .1);
+    width: 100%;
+    max-width: 400px;
+    transition: background-color .3s, color .3s;
+    position: relative;
+    z-index: 1;
+    touch-action: pan-x pan-y;
+    overscroll-behavior-y: contain;
+}
+
+/* Handle iOS dark mode */
+@media (prefers-color-scheme: dark) {
+    [data-theme="dark"] {
+        color-scheme: dark;
+    }
+}
+
+/* Fix iOS notch issues */
+@supports (padding: max(0px)) {
+    .container {
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+    }
+}
+
+/* Handle iOS keyboard appearance */
+@media screen and (max-height: 500px) {
+    body {
+        align-items: flex-start;
+        padding-top: 20px;
+    }
+    
+    .container {
+        margin-bottom: 20px;
+    }
+}
+
+.todo-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+/* Completed task styling */
+.todo-item.completed span {
+    text-decoration: line-through;
+    color: var(--secondary-text-color);
+    opacity: 0.7;
+}
+
+.todo-item.completed {
+    background: linear-gradient(145deg, var(--todo-bg-color), var(--card-bg-color));
+    opacity: 0.8;
+}
+
+/* Checkbox custom appearance */
+.todo-item input[type="checkbox"]:checked {
+    background-color: #2575fc;
+    border-color: #2575fc;
+    position: relative;
+}
+
+.todo-item input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* User Section Styles */
+.user-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.username-input {
+    width: calc(100% - 22px);
+    padding: 12px;
+    margin: 10px auto;
+    display: block;
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+    font-size: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(145deg, #2575fc, #6a11cb);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.user-welcome {
+    color: var(--text-color);
+    font-size: 1.1em;
+    margin-right: 15px;
+}
+
+/* Auth Styles */
+.auth-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.auth-form {
+    padding: 20px;
+}
+
+.auth-form h2 {
+    margin-bottom: 20px;
+    color: var(--text-color);
+    font-size: 1.8em;
+    background: linear-gradient(145deg, #2575fc, #6a11cb);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.auth-input {
+    width: calc(100% - 22px);
+    padding: 12px;
+    margin: 10px auto;
+    display: block;
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+    font-size: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.auth-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(145deg, #2575fc, #6a11cb);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin: 15px 0;
+}
+
+.auth-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.auth-switch {
+    margin-top: 15px;
+    color: var(--secondary-text-color);
+}
+
+.auth-switch a {
+    color: #2575fc;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-switch a:hover {
+    text-decoration: underline;
+}
+
+/* Navigation with logout */
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: linear-gradient(145deg, #dc3545, #c82333);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.logout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.logout-btn i {
+    font-size: 18px;
+}
+
+/* Update navigation layout */
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.todo-item.completed[draggable="false"] {
+    cursor: default;
+}
+
+.edit-btn {
+    background: none;
+    border: none;
+    color: #6a11cb;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-left: auto;
+    transition: all 0.3s ease;
+}
+
+.edit-btn:hover {
+    background-color: rgba(106, 17, 203, 0.1);
+}
+
+.edit-btn i {
+    font-size: 14px;
+}
+
+.edit-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 0 4px;
+}
+
+.edit-task-input {
+    flex-grow: 1;
+    padding: 8px;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.edit-task-input:focus {
+    outline: none;
+    border-color: #2575fc;
+    box-shadow: 0 0 0 2px rgba(37, 117, 252, 0.2);
+}
+
+.task-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.save-edit-btn,
+.cancel-edit-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.save-edit-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.save-edit-btn:hover {
+    background-color: #218838;
+}
+
+.cancel-edit-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.cancel-edit-btn:hover {
+    background-color: #c82333;
+}
+
+/* Add these styles to styles.css */
+
+.edit-btn {
+    background: none;
+    border: none;
+    color: #6a11cb;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-left: auto;
+    transition: all 0.3s ease;
+}
+
+.edit-btn:hover {
+    background-color: rgba(106, 17, 203, 0.1);
+}
+
+.edit-btn i {
+    font-size: 14px;
+}
+
+.edit-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 0 4px;
+}
+
+.edit-task-input {
+    flex-grow: 1;
+    padding: 8px;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.edit-task-input:focus {
+    outline: none;
+    border-color: #2575fc;
+    box-shadow: 0 0 0 2px rgba(37, 117, 252, 0.2);
+}
+
+.task-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.save-edit-btn,
+.cancel-edit-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.save-edit-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.save-edit-btn:hover {
+    background-color: #218838;
+}
+
+.cancel-edit-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.cancel-edit-btn:hover {
+    background-color: #c82333;
+}
+
+/* Adjust the todo-item layout to accommodate the edit button */
+.todo-item {
+    justify-content: space-between;
+}
+
+.todo-item span {
+    flex-grow: 1;
+    margin: 0 8px;
+}
+
+.theme-toggle i {
+    transition: transform 0.3s ease;
+}
+
+/* Light theme (default) */
+[data-theme="light"] .theme-toggle i::before {
+    content: "\f186"; /* moon icon */
+}
+
+/* Dark theme */
+[data-theme="dark"] .theme-toggle i::before {
+    content: "\f185"; /* sun icon */
+}
+
+/* Remove the existing rotation transform */
+[data-theme="dark"] .theme-toggle i {
+    transform: none;
+}
+
+.delete-all-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(145deg, #dc3545, #c82333);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.delete-all-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(145deg, #c82333, #dc3545);
+}
+
+.delete-all-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.delete-all-btn::before {
+    content: "\f2ed";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+}
+
+/* Add these styles to styles.css */
+
+.alert-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.alert-dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.2s ease;
+}
+
+.alert-dialog-content {
+    background: var(--card-bg-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    max-width: 300px;
+    width: 90%;
+    position: relative;
+    animation: slideIn 0.2s ease;
+}
+
+.alert-dialog-title {
+    font-size: 1.2em;
+    margin: 0 0 10px 0;
+    color: var(--text-color);
+}
+
+.alert-dialog-description {
+    color: var(--secondary-text-color);
+    margin: 0 0 20px 0;
+    line-height: 1.5;
+}
+
+.alert-dialog-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.alert-dialog-cancel,
+.alert-dialog-confirm {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.alert-dialog-cancel {
+    background-color: var(--todo-bg-color);
+    color: var(--text-color);
+}
+
+.alert-dialog-confirm {
+    background: linear-gradient(145deg, #dc3545, #c82333);
+    color: white;
+}
+
+.alert-dialog-cancel:hover {
+    background-color: var(--border-color);
+}
+
+.alert-dialog-confirm:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { 
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.delete-all-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(145deg, #dc3545, #c82333);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.delete-all-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(145deg, #c82333, #dc3545);
+}
+
+.delete-all-btn:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.delete-all-btn::before {
+    content: "\f2ed";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+}
+
+.delete-all-btn:disabled {
+    background: linear-gradient(145deg, #6c757d, #495057);
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
+    box-shadow: none;
+}
+
+.delete-all-btn.disabled {
+    pointer-events: none;
+    opacity: 0.6;
+    background: linear-gradient(145deg, #6c757d, #495057);
+}

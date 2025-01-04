@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <title>To-Do List App</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="apple-touch-icon" href="/api/placeholder/180/180">
+    <link rel="apple-touch-startup-image" href="/api/placeholder/2048/2732">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body data-theme="light">
+    <div class="container">
+        <div id="auth-section" class="auth-section">
+            <div id="login-form" class="auth-form">
+                <h2>Login</h2>
+                <input type="text" id="login-username" class="auth-input" placeholder="Username">
+                <input type="password" id="login-password" class="auth-input" placeholder="Password">
+                <button class="auth-btn" onclick="login()">Login</button>
+                <p class="auth-switch">Don't have an account? <a href="#" onclick="toggleAuthForm('signup')">Sign Up</a></p>
+            </div>
+            
+            <div id="signup-form" class="auth-form" style="display: none;">
+                <h2>Sign Up</h2>
+                <input type="text" id="signup-username" class="auth-input" placeholder="Username">
+                <input type="password" id="signup-password" class="auth-input" placeholder="Password">
+                <input type="password" id="signup-confirm-password" class="auth-input" placeholder="Confirm Password">
+                <button class="auth-btn" onclick="signup()">Sign Up</button>
+                <p class="auth-switch">Already have an account? <a href="#" onclick="toggleAuthForm('login')">Login</a></p>
+            </div>
+        </div>
+        
+        <div id="main-app" class="main-app" style="display: none;">
+            <div class="navigation">
+                <div class="user-welcome">Welcome, <span id="user-display"></span>!</div>
+                <div class="nav-buttons">
+                    <button class="theme-toggle" onclick="toggleTheme()">
+                        <i class="fas fa-moon"></i>
+                        Theme
+                    </button>
+                    <button class="logout-btn" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </button>
+                </div>
+            </div>
+            <div id="todo-section">
+                <div class="date" id="current-date"></div>
+                <h1>To-Do List</h1>
+                <input type="text" id="todo-input" class="todo-input" placeholder="Add a new task...">
+                <button class="add-btn" onclick="addTask()">Add Task</button>
+                <button class="delete-all-btn" onclick="deleteAllTasks()">Delete All Tasks</button>
+                <div class="todo-list-container">
+                    
+                <div id="delete-dialog" class="alert-dialog" style="display: none;">
+                    <div class="alert-dialog-overlay"></div>
+                    <div class="alert-dialog-content">
+                        <h3 class="alert-dialog-title">Delete All Tasks</h3>
+                        <p class="alert-dialog-description">Are you sure you want to delete all tasks? This action cannot be undone.</p>
+                        <div class="alert-dialog-buttons">
+                            <button class="alert-dialog-cancel" onclick="cancelDeleteAll()">No, keep tasks</button>
+                            <button class="alert-dialog-confirm" onclick="confirmDeleteAll()">Yes, delete all</button>
+                        </div>
+                    </div>
+                </div>
+                    <ul id="todo-list" class="todo-list"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
